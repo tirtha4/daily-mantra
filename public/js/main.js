@@ -90,7 +90,7 @@ async function whatsappMsg() {
 }
 
 async function telegramMsg() {
-   const telegramUrl = `https://telegram.me/share/url??text=${quoteText.innerText} - ${authorText.innerText}`;
+   const telegramUrl = `https://telegram.me/share/url?url=''&text=${quoteText.innerText} - ${authorText.innerText}`;
    window.open(telegramUrl, '_blank');
   
 }
