@@ -79,18 +79,21 @@ async function getQuotes() {
 
 // Tweet Quote
 async function tweetMsg() {
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteText.innerText} - ${authorText.innerText}`;
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteText.innerText} - ${authorText.innerText} 
+   \u270D For more visit: https://dailymantra.herokuapp.com/`;
   window.open(twitterUrl, '_blank');
   
 }
 async function whatsappMsg() {
-   const whatsappUrl = `https://api.whatsapp.com/send?text=${quoteText.innerText} - ${authorText.innerText}`;
+   const whatsappUrl = `https://api.whatsapp.com/send?text=${quoteText.innerText} - ${authorText.innerText}
+   \n| \u270D For more visit: https://dailymantra.herokuapp.com/ |`;
    window.open(whatsappUrl, '_blank');
   
 }
 
 async function telegramMsg() {
-   const telegramUrl = `https://telegram.me/share/url?url=''&text=${quoteText.innerText} - ${authorText.innerText}`;
+   const telegramUrl = `https://telegram.me/share/url?text=${quoteText.innerText} \n - \n ${authorText.innerText}
+   \n| \u270D For more visit: https://dailymantra.herokuapp.com/ |`;
    window.open(telegramUrl, '_blank');
   
 }
