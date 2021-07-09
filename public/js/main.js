@@ -2,6 +2,8 @@ const quoteContainer = document.getElementById('quote-container');
 const quoteText = document.getElementById('quote');
 const authorText = document.getElementById('author');
 const twitterBtn = document.getElementById('twitter');
+const whatsappBtn = document.getElementById('whatsapp');
+const telegramBtn = document.getElementById('telegram');
 const newQuoteBtn = document.getElementById('new-quote');
 const newTriviaBtn = document.getElementById('new-trivia');
 const loader = document.getElementById('loader');
@@ -76,16 +78,27 @@ async function getQuotes() {
 }
 
 // Tweet Quote
-async function tweetQuote() {
+async function tweetMsg() {
   const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteText.innerText} - ${authorText.innerText}`;
   window.open(twitterUrl, '_blank');
-
+  
+}
+async function whatsappMsg() {
+   const whatsappUrl = `https://api.whatsapp.com/send?text=${quoteText.innerText} - ${authorText.innerText}`;
+   window.open(whatsappUrl, '_blank');
   
 }
 
+async function telegramMsg() {
+   const telegramUrl = `https://telegram.me/share/url??text=${quoteText.innerText} - ${authorText.innerText}`;
+   window.open(telegramUrl, '_blank');
+  
+}
 // Event Listeners
 newQuoteBtn.addEventListener('click', newQuote);
-twitterBtn.addEventListener('click', tweetQuote);
+twitterBtn.addEventListener('click', tweetMsg);
+whatsappBtn.addEventListener('click', whatsappMsg);
+telegramBtn.addEventListener('click', telegramMsg);
 newTriviaBtn.addEventListener('click', getTrivia);
 
 // On Load
