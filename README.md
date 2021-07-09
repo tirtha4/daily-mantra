@@ -8,6 +8,6 @@ npm install
 npm run dev
 
 
-Go to http://localhost:3000
+Checkout live app: https://dailymantra.herokuapp.com/
 ```
 
