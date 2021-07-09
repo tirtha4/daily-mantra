@@ -8,7 +8,7 @@ const newQuoteBtn = document.getElementById('new-quote');
 const newTriviaBtn = document.getElementById('new-trivia');
 const loader = document.getElementById('loader');
 let apiQuotes = [];
-
+let apiTrivia = []
 // Loading Spinner Shown
 function loading() {
   loader.hidden = false;
@@ -48,29 +48,31 @@ function newQuote() {
 async function getTrivia() {
   loading();
 
-  const apiUrl = 'https://opentdb.com/api.php?amount=1';
-  try {
-    const response = await fetch(apiUrl);
-    const apiTrivia = await response.json();
-    const trivia = apiTrivia.results[0];
-    console.log('api:',trivia);
-    
-    // apiQuotes.type = 'trivia';
-    
-    authorText.innerHTML = trivia.correct_answer;
-    quoteText.innerHTML = trivia.question;
-  } catch (error) {
-    // Catch Error Here
+  // Pick a random quote from array
+  const trivia = apiTrivia[Math.floor(Math.random() * apiTrivia.length)];
+
+  authorText.innerHTML = trivia.correct_answer;
+  
+  if (trivia.question.length > 120) {
+    quoteText.classList.add('long-quote');
+  } else {
+    quoteText.classList.remove('long-quote');
   }
+  quoteText.innerHTML = trivia.question;
   complete();
 }
 
 async function getQuotes() {
   loading();
   const apiUrl = 'https://type.fit/api/quotes';
+  const triviaUrl = 'https://opentdb.com/api.php?amount=10'
   try {
-    const response = await fetch(apiUrl);
-    apiQuotes = await response.json();
+    const responseQuote = await fetch(apiUrl);
+    const responseTrivia = await fetch(triviaUrl);
+    apiQuotes = await responseQuote.json();
+    const triviaResponse = await responseTrivia.json();
+    console.log('URL',triviaResponse);
+    apiTrivia = triviaResponse.results;
     newQuote();
   } catch (error) {
     // Catch Error Here
